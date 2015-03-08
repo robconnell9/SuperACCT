@@ -26,7 +26,8 @@ public class AcctService {
   public  void getDB ()  {
   	try {
   	if (AcctService.db == null) {
-      MongoClientURI uri  = new MongoClientURI("mongodb://rob:lachlan@ds039487.mongolab.com:39487/test99"); 
+      MongoClientURI uri  = new MongoClientURI(""); 
+      
       MongoClient client = new MongoClient(uri);
       AcctService.db = client.getDB(uri.getDatabase());
       //client.close();
