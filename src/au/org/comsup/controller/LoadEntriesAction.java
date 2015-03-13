@@ -68,18 +68,18 @@ public class LoadEntriesAction extends AbstractAction {
 
   public void actionPerformed(ActionEvent e) {
     File selectedFile = chooseFile();
-    int recsProcessed = extractFromFile(selectedFile);
+   // int recsProcessed = extractFromFile(selectedFile);
    
 
 
     LoadEntriesWorker loadEntriesWorker = new LoadEntriesWorker(
-        acctEntryListModel);
+        acctEntryListModel, selectedFile);
     // loadPersonsWorker.setLoadSpeedModel(loadPersonsSpeedModel);
     for (SwingWorkerPropertyChangeListener swingWorkerPropertyChangeListener : swingWorkerPropertyChangeListeners) {
       swingWorkerPropertyChangeListener
           .attachPropertyChangeListener(loadEntriesWorker);
     }
-    JOptionPane.showMessageDialog(this.getParentJFrame(), recsProcessed
+    JOptionPane.showMessageDialog(this.getParentJFrame(), getLineCount(selectedFile)
         + " Records Processed...");
     System.out.println("xxx");
     loadEntriesWorker.execute();
@@ -135,6 +135,21 @@ public class LoadEntriesAction extends AbstractAction {
     String[] transAmounts = StringUtils.substringsBetween(doubleQuotedString , "\"", "\"");
     return transAmounts[0];
     
+  }
+  
+  public int getLineCount(File chosenFile) {
+	  int lines=0;
+  FileReader fr = null;
+  BufferedReader br = null;
+  try {
+    fr = new FileReader(chosenFile);
+    br = new BufferedReader(fr);
+    while (br.readLine() != null) lines++;
+    br.close();
+  } catch (Exception e) {
+	  e.printStackTrace();
+  }
+  return lines;
   }
 
   /*
