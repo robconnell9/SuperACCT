@@ -75,7 +75,7 @@ public class AcctEntry implements Serializable {
   
   public String getTransDateAsString() {
  
-    SimpleDateFormat outFormat = new SimpleDateFormat("ddMMyyyy");
+    SimpleDateFormat outFormat = new SimpleDateFormat("dd/MM/yyyy");
     String transDate = outFormat.format(this.transDate);
     return transDate;
 

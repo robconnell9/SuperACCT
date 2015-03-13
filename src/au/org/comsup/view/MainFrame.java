@@ -23,7 +23,7 @@ public class MainFrame extends JFrame {
 	 */
 	private static final long serialVersionUID = 4353611743416911021L;
 
-	
+	private OverviewPanel overviewPanel = new OverviewPanel();
 	private ListAdapterListModel<AcctEntry> acctEntryListModel = new ListAdapterListModel<AcctEntry>();
 	private SwingWorkerProgressModel swingWorkerProgressModel = new SwingWorkerProgressModel();
     private JProgressBar progressBar = new JProgressBar(swingWorkerProgressModel);
@@ -45,9 +45,9 @@ public class MainFrame extends JFrame {
 		Container contentPane = getContentPane();
 		contentPane.setLayout(new BorderLayout());
 		//progressBar.setStringPainted(true);
-		//overviewPanel.setPersonList(personListModel);
+		overviewPanel.setAcctEntryList(acctEntryListModel);
 
-		//setContent(overviewPanel);
+		setContent(overviewPanel);
 		//getContentPane().add(loadSpeedSimulationPanel, BorderLayout.NORTH);
 		//getContentPane().add(progressBar, BorderLayout.SOUTH);
 
